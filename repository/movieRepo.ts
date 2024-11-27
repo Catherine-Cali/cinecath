@@ -4,7 +4,7 @@ export class MovieRepository {
     public async getPopularMovies(): Promise<Movie[]> {
       try {
         // Appel API vers l'endpoint
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/movies/popular`);
+        const response = await fetch("/api/movies/popular");
   
         // Vérifie si la réponse est valide
         if (!response.ok) {
