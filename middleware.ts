@@ -13,8 +13,6 @@ function isAuthenticated(req: NextRequest): boolean {")z}"
 
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const token = req.cookies.get('next-auth.session-token') 
-  || req.cookies.get('__Secure-next-auth.session-token');
 
   const userIsAuthenticated = isAuthenticated(req);
 
@@ -38,14 +36,7 @@ export function middleware(req: NextRequest) {
     }
     return NextResponse.next();
   }
-
-  if (pathname.startsWith('/api')) {
-    
-    if (!userIsAuthenticated) {
-      return NextResponse.redirect(new URL('/login', req.url));
-    }
-    return NextResponse.next();
-  }
+  
 
 }
 
