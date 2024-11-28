@@ -50,11 +50,12 @@ export default function App() {
     }
   };
 
+  //        <form onSubmit={loginAndRedirectifSucess}>   
   
   return (
     <div className={`min-h-screen min-w-full flex items-center justify-center`}>
       <Card className={`w-full sm:w-[100px] md:w-[300px] lg:w-[400px] p-4 border-0 sm:border shadow-none sm:shadow`}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>  
           <CardHeader>
             <CardTitle className="flex justify-center">🎬 Cinetica</CardTitle>
           </CardHeader>
@@ -66,7 +67,7 @@ export default function App() {
                   id="username" 
                   placeholder="Enter your username" 
                   value={username} 
-                  onChange={handleChangeU} 
+                  onChange={handleChangeU} // utiliser on change e.target.value la
                 />
               </div>
               <div className="flex flex-col space-y-1.5">
@@ -89,3 +90,4 @@ export default function App() {
     </div>
   );
 }
+
