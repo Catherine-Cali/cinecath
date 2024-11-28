@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { TVShow } from '../../../entities/TVShow';
+import { TVShow } from '../../../../entities/TVShow';
 
 const url = 'https://api.themoviedb.org/3/tv/on_the_air?language=en-US&page=1';
 const options = {

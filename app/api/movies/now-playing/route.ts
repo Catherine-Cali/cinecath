@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Movie } from '../../../entities/Movie';
+import { Movie } from '../../../../entities/Movie';
 
 const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
 const options = {

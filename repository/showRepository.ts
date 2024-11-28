@@ -1,4 +1,4 @@
-import { Movie } from "@/app/entities/Movie";
+import { Movie } from "@/entities/Movie";
 
 export class MovieRepository {
     public async getPopularMovies(): Promise<Movie[]> {

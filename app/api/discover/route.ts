@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { Movie } from '../../entities/Movie';
-import { TVShow } from '../../entities/TVShow';
+import { Movie } from '../../../entities/Movie';
+import { TVShow } from '../../../entities/TVShow';
 
 const urlm = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
 const urls = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc';
