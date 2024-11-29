@@ -22,7 +22,7 @@ const items = [
       title: "Movies",
       url: "#",
       children: [
-        { title: "Now Playing", url: "#", icon: Film },
+        { title: "Now Playing", url: "/movies/now-playing", icon: Film },
         { title: "Popular", url: "#", icon: Users },
         { title: "Top Rated", url: "#", icon: Smile },
       ],
