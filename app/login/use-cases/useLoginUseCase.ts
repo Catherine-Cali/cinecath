@@ -10,23 +10,27 @@ export const useLoginUseCase = () => {
 
   const router = useRouter();
 
-  const loginAndRedirectIfSuccess = async () => {
+  const loginAndRedirectIfSuccess = async (event: React.FormEvent) => {
+    // Empêcher le comportement par défaut de la soumission du formulaire
+    event.preventDefault();
+
+    // Effectuer la connexion via NextAuth
     const signInResponse = await signIn("credentials", {
       username: credentials.username,
       password: credentials.password,
-      redirect: false,  // Use the correct key for redirect
+      redirect: false, // Empêche la redirection automatique, vous gérez ça manuellement
     });
 
-    if (signInResponse?.ok) {
-      router.push("/dashboard");  // Fixed Router to router
-    }
-    else {
-        const errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
-        console.error(errorMessage);  // Affichage dans la console
-        alert(errorMessage);  // Affichage dans une alerte
-    }
+    console.log(credentials, signInResponse); // Afficher les informations pour débogage
 
+    if (signInResponse?.ok) {
+      router.push("/dashboard");  // Rediriger vers le tableau de bord après la connexion réussie
+    } else {
+      const errorMessage = "Nom d'utilisateur ou mot de passe incorrect.";
+      alert(errorMessage);  // Alerte en cas d'échec
+      router.push("/login");  // Rediriger vers la page de login si échec
+    }
   };
 
-  return { credentials, setCredentials, loginAndRedirectIfSuccess };  // Correct return syntax
+  return { credentials, setCredentials, loginAndRedirectIfSuccess };
 };

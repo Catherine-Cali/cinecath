@@ -8,13 +8,14 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "admin" },
-        password: { label: "Password", type: "password", placeholder: "admin" },
+        username: { label: "Username", type: "text", placeholder: "username" },
+        password: { label: "Password", type: "password", placeholder: "password" },
       },
       async authorize(credentials) {
-        //console.log("Credentials:", credentials);
+        console.log("Credentials:", credentials);
         const { username, password } = credentials || {};
         if (username === "admin" && password === "admin") {
+          console.log("test")
             return { id: "1", name: "Admin User",imdbKey: process.env.TMDB_KEY };
         }
         console.error("Invalid credentials");
@@ -27,11 +28,11 @@ const handler = NextAuth({
     signIn: "/login", // Personnalisation de la page de connexion
   },
   callbacks:{
-    session({ session, token }: { session: Session; token: JWT;}) {
+    async session({ session, token }: { session: Session; token: JWT;}) {
       (session as Session & { imdbKey: string }).imdbKey = token.imdbKey as string;
       return session;
     },
-    jwt({ token, user }: { token: JWT; user?: User }) {
+    async jwt({ token, user }: { token: JWT; user?: User }) {
       if (user) {
         token.imdbKey =  process.env.TMDB_KEY;
       }

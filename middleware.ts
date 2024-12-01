@@ -12,6 +12,7 @@ export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const userIsAuthenticated = isAuthenticated(req);
 
+
   // Rediriger la page d'accueil
   if (pathname === '/') {
     if (!userIsAuthenticated) {
@@ -19,6 +20,9 @@ export function middleware(req: NextRequest) {
     }
     return NextResponse.redirect(new URL('/dashboard', req.url));
   }
+  // if (pathname.startsWith('/api/auth')) {
+  //   return NextResponse.next();  // Permet les requêtes vers NextAuth API
+  // }
 
   // Page de login
   if (pathname === '/login') {
@@ -51,5 +55,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/login', '/dashboard/:path', '/api/:path*'], // Assurez-vous que '/api/*' est bien dans le matcher
+  matcher: ['/', '/login', '/dashboard/:path', '/api/movies/:path*', '/api/discover/:path*', '/api/shows/:path*'], // Assurez-vous que '/api/*' est bien dans le matcher
 };

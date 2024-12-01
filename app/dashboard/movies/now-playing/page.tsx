@@ -1,9 +1,10 @@
-import React from "react";
+'use client'
 import { useFetchNowPlayingMovies } from "./use-cases/useFetchNowPlayingMovies";
+console.log(useFetchNowPlayingMovies); 
 
 export default function NowPlayingMovies() {
     // Utilisation correcte du hook personnalisé
-    const { movies, isError, isLoading } = useFetchNowPlayingMovies();
+    const { movies, isError, isLoading } = useFetchNowPlayingMovies(); 
 
     // Gestion du chargement
     if (isLoading) {
@@ -18,6 +19,7 @@ export default function NowPlayingMovies() {
     // Rendu des films
     return (
         <div>
+            
             {movies?.map((movie) => (
                 <p key={movie.id}>{movie.title}</p>
             ))}

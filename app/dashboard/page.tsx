@@ -7,7 +7,7 @@ export default function Dashboard() {
       <SidebarProvider>
       <div className="h-screen w-screen flex flex-col font-sans">
         <div className="flex-[0.05]">
-          <h1 className="text-lg pt-1.5 pl-3">🎬 Cinetica</h1>
+          <h1 className="text-lg pt-1.5 pl-3"> Cinetica</h1>
         </div>
         
         <div className="border-t border-gray-300"></div>

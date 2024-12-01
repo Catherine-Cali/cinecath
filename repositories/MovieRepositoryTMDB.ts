@@ -1,21 +1,21 @@
-"use client";
 import { Movie } from "@/entities/Movie";
 import { MovieRepository } from "./interface/MovieRepository";
 
 export class MovieRepositoryTMDB implements MovieRepository {
 
-  async getNowPlayingMovies(): Promise<Movie[]> {
-    const url = 'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
+  getNowPlayingMovies(): Promise<Movie[]> {
+    async function fetchNowPlaying(){
+      const nowPlayingMovieResponse = await fetch("/api/movies/now-playing")
+      if (!nowPlayingMovieResponse.ok) {
+        throw new Error('Failed to fetch now playing movies')
+      }
+  
 
-    const nowPlayingMovieResponse = await fetch(url, options);
+    const data = await nowPlayingMovieResponse.json()
 
-    if (!nowPlayingMovieResponse.ok) {
-      throw new Error('Failed to fetch now playing movies');
-    }
-
-    const data = await nowPlayingMovieResponse.json();
-    return data.results; 
+    return data 
+  }
+  return fetchNowPlaying()
   }
 
   async getPopularMovies(): Promise<Movie[]> {
