@@ -15,7 +15,6 @@ import React from "react";
 
 export const LoginCard = () => {
   const { credentials, setCredentials, loginAndRedirectIfSuccess } = useLoginUseCase();
-  
 
   return (
     <div className={`min-h-screen min-w-full flex items-center justify-center`}>

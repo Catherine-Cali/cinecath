@@ -31,7 +31,7 @@ export default function DiscoverCarousel() {
       >
         <CarouselContent className="h-full w-full">
           {slides.map((slide) => (
-            <CarouselItem key={slide.id} className="h-full w-full">
+            <CarouselItem key={slide.id} className="basis">
               <div className="h-full w-full p-1">
                 <Card className="h-full w-full">
                   <CardContent

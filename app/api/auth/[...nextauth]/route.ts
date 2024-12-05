@@ -3,7 +3,6 @@ import { JWT } from "next-auth/jwt";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 const handler = NextAuth({
-  // Configuration des fournisseurs
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -25,7 +24,7 @@ const handler = NextAuth({
   ],
     secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/login", // Personnalisation de la page de connexion
+    signIn: "/login", 
   },
   callbacks:{
     async session({ session, token }: { session: Session; token: JWT;}) {
@@ -39,6 +38,8 @@ const handler = NextAuth({
       return token;
     }
     },
+    
+
 });
 
 export { handler as GET, handler as POST };
