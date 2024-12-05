@@ -10,7 +10,6 @@ export class MovieRepositoryTMDB implements MovieRepository {
         throw new Error('Failed to fetch now playing movies')
       }
     const data = await nowPlayingMovieResponse.json()
-
     return data 
   }
   return fetchNowPlaying()

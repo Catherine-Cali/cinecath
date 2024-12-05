@@ -14,7 +14,7 @@ export interface Movie {
     //adult: boolean; 
     //popularity: number; 
     //video: boolean; 
-    //backdrop_path: string; 
+    backdrop_path: string; 
     overview: string; 
     poster_path: string; 
   }
