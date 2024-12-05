@@ -1,13 +1,15 @@
 import React, { createContext, useContext, PropsWithChildren } from "react";
 import { MovieRepositoryTMDB } from "@/repositories/MovieRepositoryTMDB";
 import { MovieRepository } from "@/repositories/interface/MovieRepository";
+import { TVShowRepositoryTMDB } from "@/repositories/TVShowsRepositoryTMDB";
+import { TVShowRepository } from "@/repositories/interface/TVShowRepository";
 
-// Interface pour le contexte
 interface ApplicationRepository {
     movieRepository: MovieRepository;
+    tvshowRepository: TVShowRepository;
 }
 
-// Création du contexte avec une valeur par défaut de `null`
+
 const ApplicationRepositoryContext = createContext<ApplicationRepository | null>(null);
 
 // Hook personnalisé pour utiliser le contexte
@@ -22,14 +24,17 @@ export const useApplicationRepositoryContext = () => {
 };
 
 // Fournisseur de contexte
- const ApplicationRepositoryContextProvider = ({ children }: PropsWithChildren) => {
+const ApplicationRepositoryContextProvider = ({ children }: PropsWithChildren) => {
     return (
         <ApplicationRepositoryContext.Provider
-            value={{ movieRepository: new MovieRepositoryTMDB(), }}
+            value={{
+                movieRepository: new MovieRepositoryTMDB(),
+                tvshowRepository: new TVShowRepositoryTMDB(), 
+            }}
         >
             {children}
         </ApplicationRepositoryContext.Provider>
     );
 };
 
-export default ApplicationRepositoryContextProvider
+export default ApplicationRepositoryContextProvider;

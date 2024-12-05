@@ -30,9 +30,9 @@ const items = [
     title: "TV Shows",
     url: "#",
     children: [
-      { title: "On the air", url: "/dashboard/tv/on-the-air", icon: Airplay },
-      { title: "Popular", url: "/dashboard/tv/popular", icon: Users },
-      { title: "Top Rated", url: "/dashboard/tv/top-rated", icon: Smile },
+      { title: "On the air", url: "/dashboard/shows/on-the-air", icon: Airplay },
+      { title: "Popular", url: "/dashboard/shows/popular", icon: Users },
+      { title: "Top Rated", url: "/dashboard/shows/top-rated", icon: Smile },
     ],
   },
 ];

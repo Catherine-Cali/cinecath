@@ -9,8 +9,6 @@ export class MovieRepositoryTMDB implements MovieRepository {
       if (!nowPlayingMovieResponse.ok) {
         throw new Error('Failed to fetch now playing movies')
       }
-  
-
     const data = await nowPlayingMovieResponse.json()
 
     return data 
@@ -18,32 +16,29 @@ export class MovieRepositoryTMDB implements MovieRepository {
   return fetchNowPlaying()
   }
 
-  async getPopularMovies(): Promise<Movie[]> {
-    const url = 'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1';
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
-
-    const popularMovieResponse = await fetch(url, options);
-
-    if (!popularMovieResponse.ok) {
-        throw new Error('Failed to fetch popular movies');
-    }
-
+  getPopularMovies(): Promise<Movie[]> {
+    async function fetchPopular(){
+      const popularMovieResponse = await fetch("/api/movies/popular")
+      if (!popularMovieResponse.ok) {
+        throw new Error('Failed to fetch popular movies')
+      }
+    
     const data = await popularMovieResponse.json();
-    return data.results; 
-}
+    return data; 
+  }
+  return fetchPopular() 
+  }
 
-async getTopRatedMovies(): Promise<Movie[]> {
-    const url = 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1';
-    const options = { method: 'GET', headers: { accept: 'application/json' } };
-
-    const topRatedMovieResponse = await fetch(url, options);
-
-    if (!topRatedMovieResponse.ok) {
+  getTopRatedMovies(): Promise<Movie[]> {
+    async function fetchTopRated(){
+      const popularMovieResponse = await fetch("/api/movies/top-rated");
+      if (!popularMovieResponse.ok) {
         throw new Error('Failed to fetch top-rated movies');
     }
-
-    const data = await topRatedMovieResponse.json();
-    return data.results; 
+    const data = await popularMovieResponse.json();
+    return data;
+    }
+    return fetchTopRated() 
 }
 }
 
