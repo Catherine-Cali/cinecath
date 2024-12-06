@@ -2,6 +2,7 @@
 // une structure, forme pour notre code : nommer et typer
 
 export interface Movie {
+    name: any;
     datemax : string;
     datemin : string; 
     title: string;

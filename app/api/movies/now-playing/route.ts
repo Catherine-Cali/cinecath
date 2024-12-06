@@ -34,7 +34,7 @@ export async function GET() {
       title: item.title,
       overview: item.overview,
       releaseDate: item.release_date,
-      poster_path:"https://image.tmdb.org/t/p/original"+ item.poster_path,
+      poster_path: item.poster_path,
     }));
 
     //serveur envoie reponse HTTP de statut 200 (succes) avec les donnees JSON du tableau movies
