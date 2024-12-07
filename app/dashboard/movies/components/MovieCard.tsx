@@ -15,7 +15,7 @@ interface MovieCardProps {
 
 export function MovieCard({ movie }: MovieCardProps) {
   return (
-    <Link href={`/dashboard/movies/popular`} passHref>
+    <Link href={`/dashboard/movies/${movie.id}`} passHref>
     <Card className="w-full p-0 hover:opacity-90 group border-none shadow-none">
       <CardHeader className="p-0 relative">
         {movie.poster_path ? (

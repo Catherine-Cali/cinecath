@@ -1,0 +1,30 @@
+A faire :
+
+-> Extraire les détails ( faire un MovieDetailRepository et ShowDetailRepository)
+    ->  avant : faire un MovieDetail/ShowDetail dans entities
+    -> faire la classe et les méthodes
+
+lien : https://developer.themoviedb.org/reference/movie-details
+
+    
+
+-> Préparer une page modèle pour afficher les détails sur un film/une série
+-> faire le carroussel discover 
+    -> DiscoverRepo ??
+
+Revoir que fait le applicationcontexte
+
+
+à faire plus tard ( OBLIGATOIRE)
+-> enlever la clé API qui est en dur dns le code
+-> refaire un user.ts au lieu du admin admin
+-> responsive
+-> dark mode
+-> tests
+
+
+A faire plus tard (facultatif)
+-> se connecter avec un mail (email provider)
+-> se connecter avec compte github, google etc (provider)
+-> barre de recherche
+-> ajouter un film aux favoris
