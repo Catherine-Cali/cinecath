@@ -1,0 +1,135 @@
+ <h2>Cast</h2>
+      {cast && cast.length > 0 ? (
+        <div className="flex gap-2 overflow-auto mt-4 mx-5  h-[400px]">
+          {cast.map((actor, index) => (
+            <div key={index} className="flex-shrink-0 w-[150px] text-center">
+
+              <img
+                src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+                alt={actor.name}
+                className="w-[400px] flex-shrink-0"
+              style={{ margin: "1rem 0" }}
+              />
+              <h3 className="font-bold mt-2">{actor.name}</h3>
+              <p className="italic text-gray-600">{actor.character}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No cast available.</p>
+      )}
+
+
+      <h2>Cast</h2>
+{cast && cast.length > 0 ? (
+  <div className="flex gap-2 overflow-auto mt-4 mx-5 no-scrollbar h-[400px]">
+    {cast.map((actor, index) =>
+      actor.profile_path ? (
+        <img
+          key={index}
+          src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+          alt={actor.name}
+          className="w-[150px] h-[200px] object-cover flex-shrink-0"
+          style={{ margin: "1rem 0" }}
+        />
+      ) : (
+        <div
+          key={index}
+          className="w-[150px] h-[200px] flex-shrink-0 flex items-center justify-center bg-gray-200 text-gray-500"
+          style={{ margin: "1rem 0" }}
+        >
+          <p>No image available</p>
+        </div>
+      )
+    )}
+  </div>
+) : (
+  <p>No images available.</p>
+)}
+
+
+
+{cast &&
+  cast.length > 0 &&
+  cast.map((actor, index) => {
+    if (!actor.profile_path) {
+      // Pas d'appel à l'API si le chemin de l'image est manquant
+      return (
+        <div
+          key={index}
+          className="w-[150px] h-[200px] flex-shrink-0 flex items-center justify-center bg-gray-200 text-gray-500"
+        >
+          <p>No image available</p>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        key={index}
+        src={`https://image.tmdb.org/t/p/original/${actor.profile_path}`}
+        alt={actor.name}
+        className="w-[150px] h-[200px] object-cover flex-shrink-0"
+      />
+    );
+  })}
+
+
+
+
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+
+
+interface ActorCardProps {
+  name: string;
+  character: string;
+  profilePath: string | null;
+}
+
+const ActorCard: React.FC<ActorCardProps> = ({ name, character, profilePath }) => {
+  return (
+    <Card className="bg-gray-50 flex-shrink-0 p-0">
+      <CardHeader>
+        <CardTitle></CardTitle>
+        <CardDescription></CardDescription>
+      </CardHeader>
+      <CardContent>
+        <img
+          className="w-[150px] h-[200px] object-cover rounded-md"
+          src={
+            profilePath
+              ? `https://image.tmdb.org/t/p/w300/${profilePath}`
+              : "https://via.placeholder.com/200x300?text=Image+indisponible"
+          }
+          alt={name || "Image indisponible"}
+        />
+      </CardContent>
+      <CardFooter className="flex flex-col space-y-2">  {/* Ajouter une direction de flex-col */}
+  <p className="text-sm font-bold">{name}</p>  {/* Nom en gras */}
+  <p className="text-sm text-gray-500 italic">{character}</p>  {/* Personnage en gris italique */}
+</CardFooter>
+
+
+
+    </Card>
+  );
+};
+
+export default ActorCard;
+
+
+
+
+
+    <h2>Cast</h2>
+     {cast && cast.length > 0 ? (
+    <div className="flex gap-2 overflow-x-auto mt-4 mx-5 no-scrollbar h-[400px]">
+    {cast.map((actor) => (
+      actor ? (
+        <ActorCard key={actor.id} actor={actor} />
+      ) : null
+    ))}
+  </div>
+) : (
+  <p>No cast available.</p>
+)}

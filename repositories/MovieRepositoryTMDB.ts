@@ -2,8 +2,8 @@ import { Movie } from "@/entities/Movie";
 import { MovieRepository } from "./interface/MovieRepository";
 import { MovieDetail } from "@/entities/MovieDetail";
 import { Images } from "@/entities/Images";
+import { Cast } from "@/entities/Cast";
 
-const API_BASE_URL = process.env.API_URL;
 
 const headers = {
   Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2NmYyNzY4NzU0NmYyMDY3MzMzNDYyOWUwNGRjOWM3MCIsIm5iZiI6MTczMDgxODk3MS44MDcwMDAyLCJzdWIiOiI2NzJhMzM5YjE0ZDRhMzk5NzIwMzU2MDAiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.WyT1sAl3xJWfyT9Y7dwilWvuprYEeJ65P_R-WfS921Q`,
@@ -50,7 +50,6 @@ export class MovieRepositoryTMDB implements MovieRepository {
 }
 
 getMovieGenres(id: number): Promise<{ id: number; name: string }[]> {
-  console.log("essai")
   async function fetchMovieGenres(){
     const movieGenreResponse = await fetch(
       `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}`,
@@ -65,12 +64,54 @@ getMovieGenres(id: number): Promise<{ id: number; name: string }[]> {
   return fetchMovieGenres();
 }
 
-// getMovieCast(id: string): Promise<Cast[]> {
-    
-// }
-// getMovieImages(id: string): Promise<Images[]> {
-    
-// }
-// 
+
+getMovieCast(id: number): Promise<Cast[]> {
+  async function fetchMovieCast() {
+    const movieCastResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_KEY}`,
+      { headers }
+    );
+
+    if (!movieCastResponse.ok) {
+      throw new Error("Failed to fetch movie cast");
+    }
+
+    const data = await movieCastResponse.json();
+
+    // On extrait les informations des acteurs et on les mappe à l'interface Cast
+    const cast = data.cast.map((actor: { name: string; character: string; profile_path: string }) => ({
+      name: actor.name,
+      character: actor.character,
+      profile_path: actor.profile_path,
+    }));
+
+    return cast;
+  }
+
+  return fetchMovieCast();
 }
 
+getMovieImages(id: number): Promise<Images[]> {
+  async function fetchMovieImages() {
+    const movieImagesResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.TMDB_KEY}`,
+      { headers }
+    );
+
+    if (!movieImagesResponse.ok) {
+      throw new Error("Failed to fetch movie images");
+    }
+
+    const data = await movieImagesResponse.json();
+
+    // Transformation des données API pour correspondre à l'interface `Images`
+    const images = data.backdrops.map((backdrop: { file_path: string }) => ({
+      filePath: backdrop.file_path, // Transforme 'file_path' en 'filePath'
+    }));
+
+    return images;
+  }
+
+  return fetchMovieImages();
+}
+}

@@ -8,8 +8,8 @@ export interface MovieRepository {
 	getNowPlayingMovies() : Promise<Movie[]>;
 	getTopRatedMovies() : Promise<Movie[]>;
 	getMovieGenres(id:number) : Promise<{ id: number; name: string }[]>;
-	//getMovieCast(id:string) : Promise<Cast[]>;
-	//getMovieImages(id:string) : Promise<Images[]>;
+	getMovieCast(id:number) : Promise<Cast[]>;
+	getMovieImages(id:number) : Promise<Images[]>;
 }
 
 //essai
