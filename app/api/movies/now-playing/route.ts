@@ -33,7 +33,7 @@ export async function GET() {
       id: item.id,
       title: item.title,
       overview: item.overview,
-      releaseDate: item.release_date,
+      releaseDate: item.releaseDate,
       poster_path: item.poster_path,
     }));
 

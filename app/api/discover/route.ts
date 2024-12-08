@@ -32,8 +32,8 @@ export async function GET() {
       id: item.id,
       title: item.title,
       overview: item.overview,
-      releaseDate: item.release_date,
-      posterPath: item.poster_path,
+      releaseDate: item.releaseDate,
+      poster_path: item.poster_path,
     }));
 
     const show: TVShow[] = dataShow.results.map((item: TVShow) => ({

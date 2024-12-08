@@ -11,7 +11,7 @@ export interface Movie {
     original_language: string;
     original_title: string;
     vote_average: number;
-    release_date: string;
+    releaseDate: string;
     adult: boolean; 
     popularity: number; 
     backdrop_path: string; 
