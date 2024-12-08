@@ -64,6 +64,21 @@ getMovieGenres(id: number): Promise<{ id: number; name: string }[]> {
   return fetchMovieGenres();
 }
 
+getMovieDetails(id: number): Promise<MovieDetail> {
+  async function fetchMovieDetails() {
+    const movieDetailResponse = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.TMDB_KEY}`,
+        { headers }
+    );
+    if (!movieDetailResponse.ok) {
+      throw new Error("Failed to fetch movie details");
+    }
+    const data = await movieDetailResponse.json();
+    return data; // Cast des données en MovieDetail
+  }
+  return fetchMovieDetails();
+}
+
 
 getMovieCast(id: number): Promise<Cast[]> {
   async function fetchMovieCast() {

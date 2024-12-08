@@ -10,6 +10,7 @@ export interface MovieRepository {
 	getMovieGenres(id:number) : Promise<{ id: number; name: string }[]>;
 	getMovieCast(id:number) : Promise<Cast[]>;
 	getMovieImages(id:number) : Promise<Images[]>;
+	getMovieDetails(id:number):Promise<MovieDetail>;
 }
 
 //essai

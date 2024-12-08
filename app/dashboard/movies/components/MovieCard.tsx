@@ -10,6 +10,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useFetchGenreMovie } from '../use-cases/useFetchGenresMovie';
 
+
 interface MovieCardProps {
   movie: Movie;
 }
@@ -60,7 +61,6 @@ export function MovieCard({ movie }: MovieCardProps) {
     <p>Error loading genres</p>
   ) : (
     <>
-      <p className="text-sm">Release Date: {movie.releaseDate}</p>
       <p className="text-sm">Genres: {genres?.map((genre) => genre.name).join(", ")}</p>
     </>
   )}

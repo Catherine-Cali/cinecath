@@ -28,3 +28,4 @@ A faire plus tard (facultatif)
 -> se connecter avec compte github, google etc (provider)
 -> barre de recherche
 -> ajouter un film aux favoris
+-> option de voir le mdp dns login card
