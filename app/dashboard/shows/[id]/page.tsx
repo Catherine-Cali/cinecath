@@ -2,18 +2,17 @@
 import { ActorCard } from "../components/ActorCard";
 import Image from "next/image";
 
-import { useFetchCastMovie } from "../use-cases/useFetchCastMovie";
-import { useFetchImageMovie } from "../use-cases/useFetchImagesMovie";
-import { useFetchMovieDetails } from "../use-cases/useFetchMovieDetail";
-import { useRouter } from "next/navigation";
 
-export default function MoviePage({ params }: { params: { id: string } }) {
-  const movieId = parseInt(params.id, 10);
+import { useRouter } from "next/navigation";
+import { useFetchCastShow } from "../uses-cases/useFetchCastShow";
+
+export default function ShowPage({ params }: { params: { id: string } }) {
+  const showId = parseInt(params.id, 10);
   const router = useRouter();
 
-  const { movie, isLoading: isLoadingMovie, isError: isErrorMovie } = useFetchMovieDetails(movieId);
-  const { images, isLoading: isLoadingImages, isError: isErrorImages } = useFetchImageMovie(movieId);
-  const { cast, isLoading: isLoadingCast, isError: isErrorCast } = useFetchCastMovie(movieId);
+  const { show, isLoading: isLoadingMovie, isError: isErrorMovie } = useFetchShowDetails(showId);
+  const { images, isLoading: isLoadingImages, isError: isErrorImages } = useFetchImageShow(showId);
+  const { cast, isLoading: isLoadingCast, isError: isErrorCast } = useFetchCastShow(showId);
 
   const isLoading = isLoadingMovie || isLoadingImages || isLoadingCast;
   const isError = isErrorMovie || isErrorImages || isErrorCast;
@@ -134,3 +133,7 @@ export default function MoviePage({ params }: { params: { id: string } }) {
     </div>
   );
 }
+function useFetchShowDetails(movieId: any): { show: any; isLoading: any; isError: any; } {
+    throw new Error("Function not implemented.");
+}
+

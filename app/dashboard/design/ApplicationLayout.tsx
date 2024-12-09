@@ -11,7 +11,7 @@ export default function ApplicationLayout({ children }: { children: React.ReactN
   const queryClient = new QueryClient();
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
+    <div className="h-screen w-screen flex justify-center items-center ">
       <QueryClientProvider client={queryClient}>
         <ApplicationRepositoryContextProvider>
           <SidebarProvider>
@@ -25,7 +25,7 @@ export default function ApplicationLayout({ children }: { children: React.ReactN
                 </div>
 
                 {/* Contenu principal avec défilement horizontal */}
-                <div className="flex-1 overflow-x-auto border-l border-gray-300">
+                <div className="flex-1 overflow-hidden border-l border-gray-300">
                   <Content>{children}</Content>
                 </div>
               </div>
@@ -36,3 +36,4 @@ export default function ApplicationLayout({ children }: { children: React.ReactN
     </div>
   );
 }
+

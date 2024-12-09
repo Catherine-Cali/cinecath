@@ -7,7 +7,11 @@ export default function NowPlayingMovies() {
   const { movies, isError, isLoading } = useFetchNowPlayingMovies();
 
   if (isLoading) {
-    return <p>Loading now playing movies...</p>;
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-16 h-16 border-t-4 border-pink-500 border-solid rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
   if (isError) {

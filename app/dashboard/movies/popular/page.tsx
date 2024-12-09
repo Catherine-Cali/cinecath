@@ -1,28 +1,32 @@
-'use client'
-import { useFetchPopularMovies } from "./uses-cases/useFetchPopularMovies";
+'use client';
 
-console.log(useFetchPopularMovies); 
+import { MovieCard } from '../components/MovieCard';
+import { useFetchPopularMovies } from './uses-cases/useFetchPopularMovies';
+
 
 export default function PopularMovies() {
-    // Utilisation correcte du hook personnalisé
-    const { movies, isError, isLoading } = useFetchPopularMovies(); 
+  const { movies, isError, isLoading } = useFetchPopularMovies();
 
-    // Gestion du chargement
-    if (isLoading) {
-        return <p>Loading popular movies...</p>;
-    }
-
-    // Gestion des erreurs
-    if (isError) {
-        return <p>Error loading popular movies</p>;
-    }
-
-    // Rendu des films
+  if (isLoading) {
     return (
-        <div>
-            {movies?.map((movie) => (
-                <p key={movie.id}>{movie.title}</p>
-            ))}
-        </div>
+      <div className="flex items-center justify-center h-screen">
+        <div className="w-16 h-16 border-t-4 border-pink-500 border-solid rounded-full animate-spin"></div>
+      </div>
     );
+  }
+
+  if (isError) {
+    return <p>Error loading popular movies</p>;
+  }
+
+  return (
+    <div>
+      <h1 className="text-2xl font-bold mb-6">Popular Movies</h1>
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {movies?.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
+      </div>
+      </div>
+  );
 }
