@@ -77,8 +77,8 @@ export default function ShowPage({ params }: { params: { id: string } }) {
 
           <div className="flex-1 flex flex-col gap-4 p-6 rounded-md">
             <h1 className="text-4xl font-bold">{show.name}</h1>
-            {show.release_date && (
-              <p className="text-gray-600 text-sm">Release Date: {show.release_date}</p>
+            {show.first_air_date && (
+              <p className="text-gray-600 text-sm">Release Date: {show.first_air_date}</p>
             )}
 
             <p className="text-gray-900 text-base leading-relaxed">{show.overview}</p>
