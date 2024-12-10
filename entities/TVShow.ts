@@ -1,4 +1,5 @@
 export interface TVShow {
+    releaseDate: any;
     name: string;
     id: number;
     genre_ids: number[];

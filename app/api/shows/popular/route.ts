@@ -26,8 +26,8 @@ export async function GET() {
         id: item.id,
         name: item.name,
         overview: item.overview,
-        releaseDate: item.release_date,  
-        posterPath: item.poster_path,
+        releaseDate: item.releaseDate,  
+        poster_path: item.poster_path,
     }));
 
     return NextResponse.json(show, { status: 200 });

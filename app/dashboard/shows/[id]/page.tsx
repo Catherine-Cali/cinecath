@@ -1,10 +1,13 @@
 "use client";
-import { ActorCard } from "../components/ActorCard";
 import Image from "next/image";
 
 
 import { useRouter } from "next/navigation";
 import { useFetchCastShow } from "../uses-cases/useFetchCastShow";
+import { useFetchImageShow } from "../uses-cases/useFetchImageShow";
+import { ActorCard } from "../../movies/components/ActorCard";
+import { useFetchGenreShow } from "../uses-cases/useFetchGenreShow";
+import { useFetchShowDetails } from "../uses-cases/useFetchShowDetail";
 
 export default function ShowPage({ params }: { params: { id: string } }) {
   const showId = parseInt(params.id, 10);
@@ -13,9 +16,10 @@ export default function ShowPage({ params }: { params: { id: string } }) {
   const { show, isLoading: isLoadingMovie, isError: isErrorMovie } = useFetchShowDetails(showId);
   const { images, isLoading: isLoadingImages, isError: isErrorImages } = useFetchImageShow(showId);
   const { cast, isLoading: isLoadingCast, isError: isErrorCast } = useFetchCastShow(showId);
+  const { genres, isLoading :isLoadingGenre, isError: isErrorGenre } = useFetchGenreShow(showId);
 
-  const isLoading = isLoadingMovie || isLoadingImages || isLoadingCast;
-  const isError = isErrorMovie || isErrorImages || isErrorCast;
+  const isLoading = isLoadingMovie || isLoadingImages || isLoadingCast ||isLoadingGenre;
+  const isError = isErrorMovie || isErrorImages || isErrorCast || isErrorGenre ;
 
   if (isLoading) {
     return (
@@ -26,11 +30,11 @@ export default function ShowPage({ params }: { params: { id: string } }) {
   }
 
   if (isError) {
-    return <p>Failed to fetch movie details.</p>;
+    return <p>Failed to fetch tv show details.</p>;
   }
 
-  if (!movie) {
-    return <p>Movie not found.</p>;
+  if (!show) {
+    return <p>tv show not found.</p>;
   }
 
   return (
@@ -44,8 +48,8 @@ export default function ShowPage({ params }: { params: { id: string } }) {
       <div
         className="relative p-6 rounded-md mt-0"
         style={{
-          backgroundImage: movie.poster_path
-            ? `linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #ffffff), url(https://image.tmdb.org/t/p/w500/${movie.poster_path})`
+          backgroundImage: show.poster_path
+            ? `linear-gradient(to bottom, rgba(255, 255, 255, 0) 70%, #ffffff), url(https://image.tmdb.org/t/p/w500/${show.poster_path})`
             : "none",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -55,10 +59,10 @@ export default function ShowPage({ params }: { params: { id: string } }) {
         <div className="absolute inset-0 backdrop-blur-sm bg-white/40 rounded-md"></div>
         <div className="relative z-10 flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-1/3">
-            {movie.poster_path ? (
+            {show.poster_path ? (
               <Image
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                alt={movie.title || "Image non disponible"}
+                src={`https://image.tmdb.org/t/p/w500/${show.poster_path}`}
+                alt={show.name || "Image non disponible"}
                 width={500}
                 height={750}
                 className="w-full h-auto object-cover rounded-md shadow-md"
@@ -72,26 +76,26 @@ export default function ShowPage({ params }: { params: { id: string } }) {
 
 
           <div className="flex-1 flex flex-col gap-4 p-6 rounded-md">
-            <h1 className="text-4xl font-bold">{movie.title}</h1>
-            {movie.release_date && (
-              <p className="text-gray-600 text-sm">Release Date: {movie.release_date}</p>
+            <h1 className="text-4xl font-bold">{show.name}</h1>
+            {show.release_date && (
+              <p className="text-gray-600 text-sm">Release Date: {show.release_date}</p>
             )}
 
-            <p className="text-gray-900 text-base leading-relaxed">{movie.overview}</p>
+            <p className="text-gray-900 text-base leading-relaxed">{show.overview}</p>
 
             <div>
-              <h2 className="text-xl font-semibold mb-2">Genres</h2>
-              {movie.genres && movie.genres.length > 0 ? (
+            <h2 className="text-xl font-semibold mb-2">Genres</h2>
+            {genres && genres.length > 0 ? (
                 <ul className="list-disc pl-5">
-                  {movie.genres.map((genre) => (
+                {genres.map((genre) => (
                     <li key={genre.id} className="text-gray-900">
-                      {genre.name}
+                    {genre.name}
                     </li>
-                  ))}
+                ))}
                 </ul>
-              ) : (
+                ) : (
                 <p className="text-gray-500">No genres available.</p>
-              )}
+                )}
             </div>
           </div>
         </div>
@@ -132,8 +136,5 @@ export default function ShowPage({ params }: { params: { id: string } }) {
       </div>
     </div>
   );
-}
-function useFetchShowDetails(movieId: any): { show: any; isLoading: any; isError: any; } {
-    throw new Error("Function not implemented.");
 }
 
