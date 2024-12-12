@@ -129,4 +129,16 @@ getMovieImages(id: number): Promise<Images[]> {
 
   return fetchMovieImages();
 }
+
+getDiscoverMovies(): Promise<Movie[]> {
+  async function fetchDiscoverMovies(){
+    const discoverMovieResponse = await fetch("/api/discover/movies")
+    if (!discoverMovieResponse.ok) {
+      throw new Error('Failed to fetch discover movies')
+    }
+  const data = await discoverMovieResponse.json()
+  return data 
+}
+return fetchDiscoverMovies()
+}
 }

@@ -6,7 +6,7 @@ export interface TVShow {
     original_language: string;
     original_title: string;
     vote_average: number;
-    release_date: string;
+    first_air_date: string;
     popularity: number; 
     video: boolean; 
     backdrop_path?: string; 

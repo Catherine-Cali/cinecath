@@ -11,6 +11,5 @@ export interface MovieRepository {
 	getMovieCast(id:number) : Promise<Cast[]>;
 	getMovieImages(id:number) : Promise<Images[]>;
 	getMovieDetails(id:number):Promise<MovieDetail>;
+	getDiscoverMovies() :Promise<Movie[]>;
 }
-
-//essai

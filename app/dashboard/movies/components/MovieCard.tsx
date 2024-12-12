@@ -18,7 +18,6 @@ interface MovieCardProps {
 export function MovieCard({ movie }: MovieCardProps) {
   // Récupérer les genres du film
   const { genres, isLoading, isError } = useFetchGenreMovie(movie.id);
-  console.log(movie);
 
 
   const [isHovered, setIsHovered] = useState(false);

@@ -1,8 +1,7 @@
+import { TVShow } from '@/entities/TVShow';
 import { NextResponse } from 'next/server';
-import { Movie } from '../../../entities/Movie';
-import { TVShow } from '../../../entities/TVShow';
 
-const urlm = 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc';
+
 const urls = 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc';
 const options = {
   method: 'GET',
@@ -14,36 +13,23 @@ const options = {
 
 export async function GET() {
   try {
-    const responseMovie = await fetch(urlm,options);
     const responseShow = await fetch(urls,options);
-
-    if (!responseMovie.ok) {
-        throw new Error(`Erreur lors de la recuperation des donnees: ${responseMovie.status}`);
-    }
 
     if (!responseShow.ok) {
         throw new Error(`Erreur lors de la recuperation des donnees: ${responseShow.status}`);
     }
 
-    const dataMovie = await responseShow.json();
-    const dataShow = await responseMovie.json();
+    const data = await responseShow.json();
 
-    const movies: Movie[] = dataMovie.results.map((item: Movie) => ({
-      id: item.id,
-      title: item.title,
-      overview: item.overview,
-      releaseDate: item.releaseDate,
-      poster_path: item.poster_path,
-    }));
 
-    const show: TVShow[] = dataShow.results.map((item: TVShow) => ({
+    const shows: TVShow[] = data.results.map((item: TVShow) => ({
         id: item.id,
         name: item.name,
         overview: item.overview,
-        releaseDate: item.release_date,  
-        posterPath: item.poster_path,
+        first_air_date: item.first_air_date,  
+        poster_path: item.poster_path,
     }));
-    return NextResponse.json({ show, movies }, { status: 200 });
+    return NextResponse.json( shows , { status: 200 });
   }
 
    catch (error) {
@@ -51,3 +37,4 @@ export async function GET() {
     return NextResponse.json({ error: 'Erreur interne du serveur' }, { status: 500 });
   }
 }
+

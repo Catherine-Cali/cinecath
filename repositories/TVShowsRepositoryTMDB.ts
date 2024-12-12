@@ -127,5 +127,18 @@ export class TVShowRepositoryTMDB implements TVShowRepository {
     }
     return fetchShowDetails();
   }
+
+  getDiscoverTVShows(): Promise<TVShow[]> {
+    async function fetchDiscoverShows(){
+      const DiscoverTVShowsResponse = await fetch("/api/discover/shows")
+      if (!DiscoverTVShowsResponse.ok) {
+        throw new Error('Failed to fetch discover tv shows')
+      }
+    const data = await DiscoverTVShowsResponse.json()
+      
+    return data 
+  }
+  return fetchDiscoverShows()
+  }
 }
 

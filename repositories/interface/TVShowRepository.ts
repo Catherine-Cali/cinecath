@@ -11,4 +11,5 @@ export interface TVShowRepository {
 	getShowCast(id:number) : Promise<Cast[]>;
 	getShowImages(id:number) : Promise<Images[]>;
 	getShowDetails(id:number):Promise<ShowDetail>;
+	getDiscoverTVShows() :Promise<TVShow[]>;
 }

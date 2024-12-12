@@ -25,7 +25,7 @@ export default function ApplicationLayout({ children }: { children: React.ReactN
                 </div>
 
                 {/* Contenu principal avec défilement horizontal */}
-                <div className="flex-1 overflow-hidden border-l border-gray-300">
+                <div className="flex-1 overflow-hidden border-l border-gray-300 ">
                   <Content>{children}</Content>
                 </div>
               </div>
