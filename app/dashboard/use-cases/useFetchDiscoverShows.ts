@@ -9,7 +9,6 @@ import { TVShow } from "@/entities/TVShow";
         queryKey: ["shows-discover"],
         queryFn: async () => await tvshowRepository.getDiscoverTVShows(),
     });
-    console.log(data)
     return { shows: data, isLoading, isError };
     
 };

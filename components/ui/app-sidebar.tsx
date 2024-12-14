@@ -11,7 +11,7 @@ import {
 // Pour le discover
 const discoverItem = {
   title: "Discover",
-  url: "/dashboard/discover", // URL mise à jour
+  url: "/dashboard", // URL mise à jour
   icon: LayoutGrid,
 };
 
