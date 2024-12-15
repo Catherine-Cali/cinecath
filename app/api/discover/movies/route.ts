@@ -31,7 +31,6 @@ export async function GET() {
 
    catch (error) {
     console.error(error);
-    // pour gerer les erreurs et envoyer une reponse appropriee
     return NextResponse.json({ error: 'Erreur interne du serveur' }, { status: 500 });
   }
 }
