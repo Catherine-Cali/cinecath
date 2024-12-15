@@ -25,7 +25,7 @@ export function MovieCard({ movie }: MovieCardProps) {
   return (
     <Link href={`/dashboard/movies/${movie.id}`} passHref>
       <Card
-        className="w-full p-0 hover:opacity-90 group border-none shadow-none relative"
+        className="w-full p-0 hover:opacity-90 group border-none shadow-none relative dark:bg-gray-800 dark:text-white"
         onMouseEnter={() => setIsHovered(true)}   // Quand on survole
         onMouseLeave={() => setIsHovered(false)}  // Quand on quitte le survol
       >
@@ -37,7 +37,7 @@ export function MovieCard({ movie }: MovieCardProps) {
             {movie.poster_path ? (
               <Image
                 src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
-                alt={movie.title || 'Image non disponible'}
+                alt={movie.title || 'Image unavailable'}
                 width={500}
                 height={500}
                 className="w-full h-full object-cover rounded-t-md"

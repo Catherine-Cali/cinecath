@@ -49,14 +49,14 @@ export default function Discover() {
   // }
 
   return (
-    <div className="space-y-6 p-1">
+    <div className="space-y-6 p-1 ">
       {/* Carrousel de découverte
       <div className="bg-white w-full h-[500px] p-8 flex items-center justify-center rounded-lg shadow-lg">
       <DiscoverCarouselessai items={List} />
       </div> */}
 
       {/* Liste de films */}
-      <div className="bg-white mb-0 ">
+      <div className="bg-white mb-0  dark:bg-gray-800 dark:text-white">
         <h1 className="text-2xl font-bold mb-3">Discover Movies</h1>
         <div className="flex gap-4 overflow-auto no-scrollbar h-[400px]">
         {movies?.map((movie) => (
@@ -69,7 +69,7 @@ export default function Discover() {
       </div>
 
       {/* Liste de séries */}
-      <div className="bg-white mt-0 mb-0 ">
+      <div className="bg-white mt-0 mb-0  dark:bg-gray-800 dark:text-white">
         <h1 className="text-2xl font-bold mb-3">Discover TV Shows</h1>
         <div className="flex gap-4 overflow-auto overflow-y-hidden no-scrollbar h-[400px]">
         {shows?.map((show) => (

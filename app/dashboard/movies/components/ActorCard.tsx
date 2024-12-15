@@ -10,7 +10,7 @@ interface ActorCardProps {
 
 export function ActorCard({ actor }: ActorCardProps) {
   return (
-    <Card className="w-[150px] p-0 hover:opacity-90 group border-none shadow-none rounded-md">
+    <Card className="w-[150px] p-0 hover:opacity-90 group border-none shadow-none rounded-md dark:bg-gray-800 dark:text-white">
       <CardHeader className="p-0 relative">
         {actor.name ? (
           <div className="w-[150px] h-[225px] relative">

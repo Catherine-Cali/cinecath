@@ -41,7 +41,7 @@ export default function ShowPage({ params }: { params: { id: string } }) {
     <div className="p-6 space-y-10">
       <button
         onClick={() => router.back()} 
-        className="flex items-center space-x-2 text-black hover:text-gray-700"
+        className="flex items-center space-x-2 text-black hover:text-gray-700 dark:text-white"
       >
         &larr; Back
       </button>

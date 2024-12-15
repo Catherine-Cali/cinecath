@@ -64,20 +64,22 @@ export function AppSidebar() {
           onClick={() => setIsMobileOpen(true)}
           className="flex items-center"
         >
-          <Menu className="h-6 w-6" />
+          <Menu className="h-6 w-6 text-gray-800 dark:text-white" />
         </Button>
       </div>
 
       {/* Sidebar en mobile (Sheet) */}
       <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
-        <SheetContent side="left" className="w-[16rem] bg-white dark:bg-gray-900">
+        <SheetContent side="left" className="w-[16rem] bg-white dark:bg-gray-800">
           <nav className="p-2">
             {/* Pour le discover */}
             <SidebarMenuItem>
               <SidebarMenuButton
                 onClick={() => handleNavigation(discoverItem.url)}
+                
+
               >
-                <div className="flex items-center">
+                <div className="flex items-center text-gray-800 dark:text-white">
                   <discoverItem.icon className="mr-2" />
                   {discoverItem.title}
                 </div>
@@ -88,7 +90,7 @@ export function AppSidebar() {
             {items.map((item, index) => (
               <SidebarMenuItem key={index}>
                 <SidebarMenuButton>
-                  <div className="flex items-center text-gray-600">
+                  <div className="flex items-center text-gray-600 dark:text-gray-300">
                     {item.title}
                   </div>
                 </SidebarMenuButton>
@@ -101,7 +103,7 @@ export function AppSidebar() {
                         <SidebarMenuSubButton
                           onClick={() => handleNavigation(subItem.url)}
                         >
-                          <div className="flex items-center">
+                          <div className="flex items-center text-gray-600 dark:text-gray-300">
                             <subItem.icon className="mr-2" />
                             {subItem.title}
                           </div>
@@ -117,14 +119,14 @@ export function AppSidebar() {
       </Sheet>
 
       {/* Sidebar en desktop */}
-      <div className="hidden md:block w-50 h-full p-4">
+      <div className="hidden md:block w-50 h-full p-4 bg-white dark:bg-gray-800">
         <nav>
           {/* Pour le discover */}
           <SidebarMenuItem>
             <SidebarMenuButton
               onClick={() => handleNavigation(discoverItem.url)}
             >
-              <div className="flex items-center">
+              <div className="flex items-center text-gray-900 dark:text-white">
                 <discoverItem.icon className="mr-2" />
                 {discoverItem.title}
               </div>
@@ -135,7 +137,7 @@ export function AppSidebar() {
           {items.map((item, index) => (
             <SidebarMenuItem key={index}>
               <SidebarMenuButton>
-                <div className="flex items-center text-gray-600">
+                <div className="flex items-center text-gray-600 dark:text-gray-300">
                   {item.title}
                 </div>
               </SidebarMenuButton>
@@ -148,7 +150,7 @@ export function AppSidebar() {
                       <SidebarMenuSubButton
                         onClick={() => handleNavigation(subItem.url)}
                       >
-                        <div className="flex items-center">
+                        <div className="flex items-center text-gray-600 dark:text-gray-300">
                           <subItem.icon className="mr-2" />
                           {subItem.title}
                         </div>

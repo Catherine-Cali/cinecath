@@ -26,7 +26,7 @@ export function ShowCard({ show }: ShowCardProps) {
   return (
     <Link href={`/dashboard/shows/${show.id}`} passHref>
       <Card
-        className="w-full p-0 hover:opacity-90 group border-none shadow-none relative"
+        className="w-full p-0 hover:opacity-90 group border-none shadow-none relative  dark:bg-gray-800 dark:text-white"
         onMouseEnter={() => setIsHovered(true)}   // Quand on survole
         onMouseLeave={() => setIsHovered(false)}  // Quand on quitte le survol
       >
@@ -38,7 +38,7 @@ export function ShowCard({ show }: ShowCardProps) {
             {show.poster_path ? (
               <Image
                 src={`https://image.tmdb.org/t/p/w300/${show.poster_path}`}
-                alt={show.name || 'Image non disponible'}
+                alt={show.name || 'Image unavailable'}
                 width={500}
                 height={500}
                 className="w-full h-full object-cover rounded-t-md"
