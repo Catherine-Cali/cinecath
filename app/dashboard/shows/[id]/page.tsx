@@ -56,7 +56,7 @@ export default function ShowPage({ params }: { params: { id: string } }) {
           backgroundRepeat: "no-repeat",
         }}
       >
-        <div className="absolute inset-0 backdrop-blur-sm bg-white/40 rounded-md"></div>
+        <div className="absolute inset-0 backdrop-blur-sm bg-white/40 rounded-md  dark:bg-gray-800/50 dark:backdrop-blur-sm"></div>
         <div className="relative z-10 flex flex-col md:flex-row gap-6">
           <div className="w-full md:w-1/3">
             {show.poster_path ? (

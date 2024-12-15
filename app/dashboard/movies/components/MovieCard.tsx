@@ -16,21 +16,17 @@ interface MovieCardProps {
 }
 
 export function MovieCard({ movie }: MovieCardProps) {
-  // Récupérer les genres du film
   const { genres, isLoading, isError } = useFetchGenreMovie(movie.id);
-
-
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <Link href={`/dashboard/movies/${movie.id}`} passHref>
       <Card
         className="w-full p-0 hover:opacity-90 group border-none shadow-none relative dark:bg-gray-800 dark:text-white"
-        onMouseEnter={() => setIsHovered(true)}   // Quand on survole
-        onMouseLeave={() => setIsHovered(false)}  // Quand on quitte le survol
+        onMouseEnter={() => setIsHovered(true)}   
+        onMouseLeave={() => setIsHovered(false)} 
       >
         <CardHeader className="p-0 relative">
-          {/* L'image du film avec effet de flou sur hover */}
           <div
             className={`w-full h-[300px] transition-all duration-300 ease-in-out ${isHovered ? 'filter blur-sm' : 'filter-none'}`}
           >
@@ -49,7 +45,6 @@ export function MovieCard({ movie }: MovieCardProps) {
             )}
           </div>
 
-          {/* Les informations du genre et de la date de sortie */}
           <div
   className={`absolute bottom-0 left-0 w-full p-4 bg-opacity-75 bg-black text-white transform transition-all duration-300 ease-in-out 
     ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'}`}

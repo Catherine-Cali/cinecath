@@ -21,8 +21,8 @@ export function ActorCard({ actor }: ActorCardProps) {
                   : "https://via.placeholder.com/150x225?text=Picture+unavailable"
               }
               alt={actor.name}
-              width={150}   // Largeur uniforme pour toutes les cartes
-              height={225}  // Hauteur réduite
+              width={150}  
+              height={225}  
               className="w-full h-full object-cover rounded-t-md"
             />
           </div>

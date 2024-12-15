@@ -17,8 +17,8 @@ export const LoginCard = () => {
   const { credentials, setCredentials, loginAndRedirectIfSuccess } = useLoginUseCase();
 
   return (
-    <div className={`min-h-screen min-w-full flex items-center justify-center`}>
-      <Card className={`w-full sm:w-[100px] md:w-[300px] lg:w-[400px] p-4 border-0 sm:border shadow-none sm:shadow`}>
+    <div className="min-h-screen min-w-full flex items-center justify-center  dark:bg-gray-800 dark:text-white">
+      <Card className={`w-full sm:w-[100px] md:w-[300px] lg:w-[400px] p-4 border-0 sm:border shadow-none sm:shadow  dark:bg-gray-900 dark:text-white`}>
         <form onSubmit={loginAndRedirectIfSuccess}>  
           <CardHeader>
             <CardTitle className="flex justify-center">🎬 Cinetica</CardTitle>
@@ -28,6 +28,7 @@ export const LoginCard = () => {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="username">Username</Label>
                 <Input 
+                  className=" dark:bg-gray-800 dark:text-white"
                   id="username" 
                   placeholder="Enter your username" 
                   value={credentials.username}
@@ -37,6 +38,7 @@ export const LoginCard = () => {
               <div className="flex flex-col space-y-1.5">
                 <Label htmlFor="password">Password</Label>
                 <Input 
+                  className=" dark:bg-gray-800 dark:text-white"
                   type="password" 
                   id="password" 
                   placeholder="Enter your password" 
@@ -46,8 +48,8 @@ export const LoginCard = () => {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex justify-center">
-            <Button type="submit" variant="outline">Login</Button>
+          <CardFooter className="flex justify-center ">
+            <Button type="submit" variant="outline" className=" dark:bg-gray-800 dark:text-white">Login</Button>
           </CardFooter>
         </form>
       </Card>
