@@ -77,21 +77,40 @@ export default function MoviePage({ params }: { params: { id: string } }) {
               <p className="text-gray-600 text-sm">Release Date: {movie.release_date}</p>
             )}
 
-            <p className="text-gray-900 text-base leading-relaxed">{movie.overview}</p>
+<p 
+              className="text-gray-900 text-base leading-relaxed" 
+              style={{ backgroundColor: 'rgba(255, 255, 255, 0.4)', display: 'inline' }}
+            >
+              {movie.overview}
+            </p>
 
             <div>
-              <h2 className="text-xl font-semibold mb-2">Genres</h2>
-              {movie.genres && movie.genres.length > 0 ? (
-                <ul className="list-disc pl-5">
-                  {movie.genres.map((genre) => (
-                    <li key={genre.id} className="text-gray-900">
-                      {genre.name}
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p className="text-gray-500">No genres available.</p>
-              )}
+            <h2 
+    className="text-xl font-semibold mb-2 text-gray-900" 
+    style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', display: 'inline-block', padding: '0 4px' }}
+  >
+    Genres
+  </h2>
+  {movie.genres && movie.genres.length > 0 ? (
+    <ul className="list-disc pl-5">
+      {movie.genres.map((genre) => (
+        <li 
+          key={genre.id} 
+          className="text-gray-900" 
+          style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', display: 'list-item', padding: '2px 4px', marginBottom: '4px' }}
+        >
+          {genre.name}
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p 
+      className="text-gray-500" 
+      style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)', display: 'inline-block', padding: '0 4px' }}
+    >
+      No genres available.
+    </p>
+  )}
             </div>
           </div>
         </div>
