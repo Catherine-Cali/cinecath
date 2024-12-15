@@ -1,5 +1,8 @@
-import { LayoutGrid, Film, Users, Smile, Airplay } from "lucide-react";
+"use client";
+
+import { LayoutGrid, Film, Users, Smile, Airplay, Menu } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import {
   SidebarMenuItem,
   SidebarMenuButton,
@@ -7,6 +10,8 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 
 // Pour le discover
 const discoverItem = {
@@ -39,6 +44,7 @@ const items = [
 
 export function AppSidebar() {
   const router = useRouter();
+  const [isMobileOpen, setIsMobileOpen] = useState(false); // État pour mobile
 
   const handleNavigation = (url: string) => {
     if (!url || url === "#") {
@@ -46,50 +52,115 @@ export function AppSidebar() {
       return;
     }
     router.push(url);
+    setIsMobileOpen(false); // Ferme la sidebar sur navigation
   };
 
   return (
-    <div className="w-full h-full p-4">
-      <nav>
-        {/* Pour le discover */}
-        <SidebarMenuItem>
-          <SidebarMenuButton onClick={() => handleNavigation(discoverItem.url)}>
-            <div className="flex items-center">
-              <discoverItem.icon className="mr-2" />
-              {discoverItem.title}
-            </div>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
+    <>
+      {/* Bouton d'ouverture de la sidebar en mobile */}
+      <div className="md:hidden p-4">
+        <Button
+          variant="ghost"
+          onClick={() => setIsMobileOpen(true)}
+          className="flex items-center"
+        >
+          <Menu className="h-6 w-6 mr-2" />
+        </Button>
+      </div>
 
-        {/* Pour films et séries */}
-        {items.map((item, index) => (
-          <SidebarMenuItem key={index}>
-            <SidebarMenuButton>
-              <div className="flex items-center text-gray-600">
-                {item.title}
+      {/* Sidebar en mobile (Sheet) */}
+      <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
+        <SheetContent side="left" className="w-[16rem] bg-white dark:bg-gray-900">
+          <nav className="p-4">
+            {/* Pour le discover */}
+            <SidebarMenuItem>
+              <SidebarMenuButton
+                onClick={() => handleNavigation(discoverItem.url)}
+              >
+                <div className="flex items-center">
+                  <discoverItem.icon className="mr-2" />
+                  {discoverItem.title}
+                </div>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
+            {/* Pour films et séries */}
+            {items.map((item, index) => (
+              <SidebarMenuItem key={index}>
+                <SidebarMenuButton>
+                  <div className="flex items-center text-gray-600">
+                    {item.title}
+                  </div>
+                </SidebarMenuButton>
+
+                {/* Sous-items */}
+                {item.children && (
+                  <SidebarMenuSub>
+                    {item.children.map((subItem, subIndex) => (
+                      <SidebarMenuSubItem key={subIndex}>
+                        <SidebarMenuSubButton
+                          onClick={() => handleNavigation(subItem.url)}
+                        >
+                          <div className="flex items-center">
+                            <subItem.icon className="mr-2" />
+                            {subItem.title}
+                          </div>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                )}
+              </SidebarMenuItem>
+            ))}
+          </nav>
+        </SheetContent>
+      </Sheet>
+
+      {/* Sidebar en desktop */}
+      <div className="hidden md:block w-50 h-full p-4">
+        <nav>
+          {/* Pour le discover */}
+          <SidebarMenuItem>
+            <SidebarMenuButton
+              onClick={() => handleNavigation(discoverItem.url)}
+            >
+              <div className="flex items-center">
+                <discoverItem.icon className="mr-2" />
+                {discoverItem.title}
               </div>
             </SidebarMenuButton>
-
-            {/* Sous-items */}
-            {item.children && (
-              <SidebarMenuSub>
-                {item.children.map((subItem, subIndex) => (
-                  <SidebarMenuSubItem key={subIndex}>
-                    <SidebarMenuSubButton
-                      onClick={() => handleNavigation(subItem.url)}
-                    >
-                      <div className="flex items-center">
-                        <subItem.icon className="mr-2" />
-                        {subItem.title}
-                      </div>
-                    </SidebarMenuSubButton>
-                  </SidebarMenuSubItem>
-                ))}
-              </SidebarMenuSub>
-            )}
           </SidebarMenuItem>
-        ))}
-      </nav>
-    </div>
+
+          {/* Pour films et séries */}
+          {items.map((item, index) => (
+            <SidebarMenuItem key={index}>
+              <SidebarMenuButton>
+                <div className="flex items-center text-gray-600">
+                  {item.title}
+                </div>
+              </SidebarMenuButton>
+
+              {/* Sous-items */}
+              {item.children && (
+                <SidebarMenuSub>
+                  {item.children.map((subItem, subIndex) => (
+                    <SidebarMenuSubItem key={subIndex}>
+                      <SidebarMenuSubButton
+                        onClick={() => handleNavigation(subItem.url)}
+                      >
+                        <div className="flex items-center">
+                          <subItem.icon className="mr-2" />
+                          {subItem.title}
+                        </div>
+                      </SidebarMenuSubButton>
+                    </SidebarMenuSubItem>
+                  ))}
+                </SidebarMenuSub>
+              )}
+            </SidebarMenuItem>
+          ))}
+        </nav>
+      </div>
+    </>
   );
 }
