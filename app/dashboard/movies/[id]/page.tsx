@@ -112,25 +112,29 @@ export default function MoviePage({ params }: { params: { id: string } }) {
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Images</h2>
-        {images && images.length > 0 ? (
-          <div className="flex gap-4 overflow-auto no-scrollbar h-[400px]">
-            {images.map((image, index) => (
-              <div key={index} className="w-[600px] flex-shrink-0">
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500/${image.filePath}`}
-                  alt={`Image ${index + 1}`}
-                  width={600}
-                  height={400}
-                  className="w-full h-auto object-cover rounded-md"
-                />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <p>No images available.</p>
-        )}
-      </div>
+  <h2 className="text-xl md:text-2xl font-semibold mb-4">Images</h2>
+  {images && images.length > 0 ? (
+    <div className="flex gap-4 overflow-auto no-scrollbar h-[200px] md:h-[400px]">
+      {images.map((image, index) => (
+        <div
+          key={index}
+          className="w-[300px] md:w-[600px] flex-shrink-0"
+        >
+          <Image
+            src={`https://image.tmdb.org/t/p/w500/${image.filePath}`}
+            alt={`Image ${index + 1}`}
+            width={600}
+            height={400}
+            className="w-full h-auto object-cover rounded-md"
+          />
+        </div>
+      ))}
+    </div>
+  ) : (
+    <p>No images available.</p>
+  )}
+</div>
+
     </div>
   );
 }
