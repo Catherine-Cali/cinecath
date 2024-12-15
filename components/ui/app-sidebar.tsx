@@ -58,20 +58,20 @@ export function AppSidebar() {
   return (
     <>
       {/* Bouton d'ouverture de la sidebar en mobile */}
-      <div className="md:hidden p-4">
+      <div className="md:hidden ml-2">
         <Button
           variant="ghost"
           onClick={() => setIsMobileOpen(true)}
           className="flex items-center"
         >
-          <Menu className="h-6 w-6 mr-2" />
+          <Menu className="h-6 w-6" />
         </Button>
       </div>
 
       {/* Sidebar en mobile (Sheet) */}
       <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
         <SheetContent side="left" className="w-[16rem] bg-white dark:bg-gray-900">
-          <nav className="p-4">
+          <nav className="p-2">
             {/* Pour le discover */}
             <SidebarMenuItem>
               <SidebarMenuButton

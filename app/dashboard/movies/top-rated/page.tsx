@@ -22,13 +22,26 @@ export default function TopRatedMovies() {
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Top Rated Movies</h1>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {movies?.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
-        ))}
+<div>
+  <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Top Rated Movies</h1>
+  <div 
+    className="
+      grid 
+      grid-cols-2 
+      sm:grid-cols-3 
+      md:grid-cols-4 
+      lg:grid-cols-5 
+      xl:grid-cols-6 
+      gap-4
+    "
+  >
+    {movies?.map((movie) => (
+      <div key={movie.id} className="w-full max-w-[250px] mx-auto"> 
+        <MovieCard  movie={movie} />
+        </div>
+      ))}
+        </div>
       </div>
-      </div>
+
   );
 }
